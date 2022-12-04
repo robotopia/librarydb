@@ -1,0 +1,55 @@
+# Home Library Database
+
+This document contains the specifications of a simple home library database.
+The purpose of the database is not to provide all possible metadata of the books themselves, but rather to keep track of where books are in the house.
+It serves as a kind of substitute for book cataloguing systems (e.g. Dewey Decimal System) for the commonly occuring situation where the available storage space is not amenable to strict ordering of books.
+
+## Specification
+
+### "Book" Object
+
+A Book object consists of:
+
+| Field | Type | Required | Description |
+| :---: | :--: | :------: | :---------- |
+| title | string | Y | The title of a book |
+| isbn | integer | N | The book's ISBN |
+| storage | Storage | N | The storage container where the book normally resides |
+| shelf | integer | N | The shelf number, if the storage container is a bookcase (1 = top, 2 = second from the top, etc.) |
+
+### "Author" Object
+
+An Author object consists of:
+
+| Field | Type | Required | Description |
+| :---: | :--: | :------: | :---------- |
+| surname | string | Y | The author's surname |
+| givenname | string | N | The author's given name(s) (or initials) |
+
+### "BookAuthor" Object
+
+An BookAuthor object connects Books and Authors. It consists of:
+
+| Field | Type | Required | Description |
+| :---: | :--: | :------: | :---------- |
+| book | Book | Y | A book |
+| author | Author | Y | An author |
+
+### "Room" Object
+
+A Room object consists of:
+
+| Field | Type | Required | Description |
+| :---: | :--: | :------: | :---------- |
+| name | string | Y | A short name for the room (e.g. "garage") |
+| location | string | N | A description of the room's location that can be used to unambiguously identify where it is |
+
+### "Storage" Object
+
+A Storage object represents a generic storage container (e.g. bookcase, box). It consists of:
+
+| Field | Type | Required | Description |
+| :---: | :--: | :------: | :---------- |
+| room | Room | N | Which room the storage container is in |
+| type | string | N | The storage container type (e.g. 'bookcase', 'box')
+| description | string | N | A description of the storage container that can uniquely identify it |
