@@ -1,6 +1,6 @@
 # Django implementation of LibraryDB
 
-1. Install dependencies:
+## Install dependencies:
 
 - [`django`](https://pypi.org/project/django/)
 - [`django-versionfield`](https://pypi.org/project/django-versionfield/)
@@ -10,17 +10,27 @@ The above can be installed with
 pip install -r requirements.txt
 ```
 
-2. Create the (SQLite3) database:
+## Create the (SQLite3) database:
 
 ```
 python manage.py makemigrations librarydb
 python manage.py migrate
 ```
-or download a pre-existing one that is compatible with the specification version, and place it in this directory with the name `librarydb.sqlite3`.
+**OR**
 
-3. Create an admin user
+Download a pre-existing SQLITE database that is compatible with the specification version, and place it in this directory with the name `librarydb.sqlite3`.
+
+## Create an admin user
 
 ```
 python manage.py createsuperuser
 ```
-and then follow the prompts for entering a username, email address, and password.
+Follow the prompts for entering a username, email address, and password.
+
+## Run the server locally
+
+```
+python manage.py runserver
+```
+
+The admin site can then be accessed at [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/).

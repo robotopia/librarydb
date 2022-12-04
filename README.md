@@ -48,6 +48,17 @@ A Storage object represents a generic storage container (e.g. bookcase, box). It
 | type | string | N | The storage container type (e.g. 'bookcase', 'box')
 | description | string | N | A description of the storage container that can uniquely identify it |
 
+### "Version" Object
+
+This specification's versioning is handled using the standard `MAJOR.MINOR.PATCH` framework, with the `MAJOR` and `MINOR` version numbers implemented as git tags, and `PATCH` being the number of commits since the most recent tag.
+Any implementation of this specification must also include the means to track which version of the specification was used at the time of implementation, and optionally which range of versions the implementation is compatible with.
+
+| Field | Type | Required | Description |
+| :---: | :--: | :------: | :---------- |
+| created | string | Y | Version number used to create the database, in the format `MAJOR.MINOR.PATCH` |
+| min_version | string | N | Minimum version compatible with this database |
+| max_version | string | N | Maximum version compatible with this database |
+
 ## Implementations
 
 - **Django**: See the [django_app](django_app) folder.
