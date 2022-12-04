@@ -1,0 +1,26 @@
+digraph specification_diagram {
+	graph [
+		label="LibraryDB specification diagram"
+		labelloc="t"
+		fontname="Helvetica,Arial,sans-serif"
+	]
+	node [
+		fontname="Helvetica,Arial,sans-serif"
+		shape=record
+		style=filled
+		fillcolor=gray95
+	]
+
+	edge [arrowhead=crow]
+	Book -> Author
+	
+	edge [arrowhead=normal]
+	Book -> Storage
+	Storage -> Room
+	
+	Book[label = <{<b>Book</b> | <b>title</b><br/>isbn<br/>storage<br/>shelf<br/>authors<br/>}>]
+	Author[label = <{<b>Author</b> | <b>surname</b><br/>givenname<br/>}>]
+	Room[label = <{<b>Room</b> | <b>name</b><br/>location<br/>}>]
+	Storage[label = <{<b>Storage</b> | <b>name</b><br/>room<br/>type<br/>description<br/>}>]
+	Version[label = <{<b>Version</b> | <b>created</b><br/>min_version<br/>max_version<br/>}>]
+}

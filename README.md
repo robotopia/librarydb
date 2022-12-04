@@ -5,6 +5,17 @@ This document contains the specifications of a simple home library database.
 The purpose of the database is not to provide all possible metadata of the books themselves, but rather to keep track of where books are in the house.
 It serves as a kind of substitute for book cataloguing systems (e.g. Dewey Decimal System) for the commonly occuring situation where the available storage space is not amenable to strict ordering of books.
 
+## Specification diagram
+
+The code to generate the following plot is in [`spec_diagram.dot`](spec_diagram.dot).
+To regenerate the image after making changes to [`spec_diagram.dot`](spec_diagram.dot),
+
+```
+dot -Tpng spec_diagram.dot -o spec_diagram.png
+```
+
+![Specification diagram](spec_diagram.png)
+
 ## Specification
 
 ### "Book" Object
