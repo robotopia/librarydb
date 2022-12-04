@@ -16,6 +16,9 @@ dot -Tpng spec_diagram.dot -o spec_diagram.png
 
 ![Specification diagram](spec_diagram.png)
 
+**Bold** fields mean they are required.
+The "crow" style connector between the Book and Author classes implies a many-to-many relationship.
+
 ## Specification
 
 ### "Book" Object
