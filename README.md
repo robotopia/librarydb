@@ -1,4 +1,5 @@
-# Home Library Database
+# LibraryDB
+A simple home library database
 
 This document contains the specifications of a simple home library database.
 The purpose of the database is not to provide all possible metadata of the books themselves, but rather to keep track of where books are in the house.
@@ -16,6 +17,7 @@ A Book object consists of:
 | isbn | integer | N | The book's ISBN |
 | storage | Storage | N | The storage container where the book normally resides |
 | shelf | integer | N | The shelf number, if the storage container is a bookcase (1 = top, 2 = second from the top, etc.) |
+| authors | List of Author objects | N | The author(s) of the book |
 
 ### "Author" Object
 
@@ -25,15 +27,6 @@ An Author object consists of:
 | :---: | :--: | :------: | :---------- |
 | surname | string | Y | The author's surname |
 | givenname | string | N | The author's given name(s) (or initials) |
-
-### "BookAuthor" Object
-
-An BookAuthor object connects Books and Authors. It consists of:
-
-| Field | Type | Required | Description |
-| :---: | :--: | :------: | :---------- |
-| book | Book | Y | A book |
-| author | Author | Y | An author |
 
 ### "Room" Object
 
@@ -50,6 +43,11 @@ A Storage object represents a generic storage container (e.g. bookcase, box). It
 
 | Field | Type | Required | Description |
 | :---: | :--: | :------: | :---------- |
+| name | string | Y | A name for the storage container |
 | room | Room | N | Which room the storage container is in |
 | type | string | N | The storage container type (e.g. 'bookcase', 'box')
 | description | string | N | A description of the storage container that can uniquely identify it |
+
+## Implementations
+
+- **Django**: See the [django_app](django_app) folder.
