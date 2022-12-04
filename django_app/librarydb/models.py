@@ -21,7 +21,7 @@ class Room(models.Model):
     location = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
-        return name
+        return self.name
 
 class Storage(models.Model):
     name = models.CharField(max_length=200)
