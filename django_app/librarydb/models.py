@@ -37,7 +37,7 @@ class Book(models.Model):
     isbn = models.BigIntegerField("ISBN", null=True, blank=True)
     storage = models.ForeignKey(Storage, null=True, blank=True, on_delete=models.SET_NULL)
     shelf = models.IntegerField(null=True, blank=True)
-    authors = models.ManyToManyField(Author)
+    authors = models.ManyToManyField(Author, blank=True)
 
     def __str__(self):
         return self.title
