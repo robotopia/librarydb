@@ -34,7 +34,7 @@ class Storage(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
-    isbn = models.BigIntegerField("ISBN", null=True, blank=True)
+    isbn = models.CharField("ISBN", max_length=64, null=True, blank=True)
     storage = models.ForeignKey(Storage, null=True, blank=True, on_delete=models.SET_NULL)
     shelf = models.IntegerField(null=True, blank=True)
     authors = models.ManyToManyField(Author, blank=True)
