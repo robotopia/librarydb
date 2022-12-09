@@ -28,7 +28,7 @@ A Book object consists of:
 | Field | Type | Required | Description |
 | :---: | :--: | :------: | :---------- |
 | title | string | Y | The title of a book |
-| isbn | integer | N | The book's ISBN |
+| isbn | string | N | The book's ISBN |
 | storage | Storage | N | The storage container where the book normally resides |
 | shelf | integer | N | The shelf number, if the storage container is a bookcase (1 = top, 2 = second from the top, etc.) |
 | authors | List of Author objects | N | The author(s) of the book |
