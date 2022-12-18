@@ -1,10 +1,18 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Author, Room, Storage, Book, Version
+from . import models
 
-admin.site.register(Author)
-admin.site.register(Room)
-admin.site.register(Storage)
-admin.site.register(Book)
-admin.site.register(Version)
+class BookAdmin(admin.ModelAdmin):
+    list_filter = [
+        ("authors", admin.RelatedOnlyFieldListFilter),
+    ]
+    search_fields = [
+        "title",
+    ]
+
+admin.site.register(models.Author)
+admin.site.register(models.Room)
+admin.site.register(models.Storage)
+admin.site.register(models.Book, BookAdmin)
+admin.site.register(models.Version)

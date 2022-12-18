@@ -6,6 +6,9 @@ class Version(models.Model):
     min_version = VersionField(null=True, blank=True)
     max_version = VersionField(null=True, blank=True)
 
+    class Meta:
+        ordering = ("created",)
+
 class Author(models.Model):
     surname = models.CharField(max_length=200)
     givenname = models.CharField(max_length=200, null=True, blank=True)
@@ -26,6 +29,9 @@ class Room(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ("name",)
+
 class Storage(models.Model):
     name = models.CharField(max_length=200)
     room = models.ForeignKey(Room, null=True, blank=True, on_delete=models.SET_NULL)
@@ -34,6 +40,9 @@ class Storage(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ("name",)
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
