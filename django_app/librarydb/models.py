@@ -16,6 +16,9 @@ class Author(models.Model):
         else:
             return self.surname
 
+    class Meta:
+        ordering = ("surname", "givenname",)
+
 class Room(models.Model):
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=200, null=True, blank=True)
@@ -41,4 +44,7 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ("title", "storage", "shelf",)
 
