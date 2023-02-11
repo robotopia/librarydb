@@ -4,6 +4,7 @@ from django.contrib import admin
 from . import models
 
 class BookAdmin(admin.ModelAdmin):
+    list_display = ["title", "loaned_to", "loan_date",]
     list_filter = [
         ("authors", admin.RelatedOnlyFieldListFilter),
     ]

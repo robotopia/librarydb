@@ -50,6 +50,8 @@ class Book(models.Model):
     storage = models.ForeignKey(Storage, null=True, blank=True, on_delete=models.SET_NULL)
     shelf = models.IntegerField(null=True, blank=True)
     authors = models.ManyToManyField(Author, blank=True)
+    loaned_to = models.CharField(max_length=200, blank=True, null=True)
+    loan_date = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return self.title
