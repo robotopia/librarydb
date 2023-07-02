@@ -11,7 +11,7 @@ class Version(models.Model):
 
 class Author(models.Model):
     surname = models.CharField(max_length=200)
-    givenname = models.CharField(max_length=200, null=True, blank=True)
+    givenname = models.CharField(verbose_name="Given names", max_length=200, null=True, blank=True)
 
     def __str__(self):
         if self.givenname is not None:
