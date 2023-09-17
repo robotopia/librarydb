@@ -20,9 +20,18 @@ class BookAdmin(admin.ModelAdmin):
         authors = "<br>".join([f"{author}" for author in obj.authors.all()])
         return format_html(authors)
 
+class MusicAdmin(admin.ModelAdmin):
+    list_display = ["title", "composers_html",]
+    list_filter = ["composers", "arrangers",]
+    search_fields = ["title", "composers", "arrangers",]
+
+    def composers_html(self, obj):
+        composers = "<br>".join([f"{author}" for author in obj.composers.all()])
+        return format_html(composers)
+
 admin.site.register(models.Author)
 admin.site.register(models.Book, BookAdmin)
-admin.site.register(models.Music)
+admin.site.register(models.Music, MusicAdmin)
 admin.site.register(models.Room)
 admin.site.register(models.Storage)
 admin.site.register(models.Version)
