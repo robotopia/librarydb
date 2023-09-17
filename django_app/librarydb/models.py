@@ -65,6 +65,9 @@ class Music(models.Model):
     composers = models.ManyToManyField(Author, blank=True, related_name="composed_music")
     arrangers = models.ManyToManyField(Author, blank=True, related_name="arranged_music")
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name_plural = "Music"
         ordering = ("title",)
