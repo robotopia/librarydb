@@ -1,4 +1,3 @@
 # Django app
 librarydb.sqlite3
-django_app/librarydb/migrations
 __pycache__
