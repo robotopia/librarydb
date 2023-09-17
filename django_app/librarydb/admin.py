@@ -22,8 +22,17 @@ class BookAdmin(admin.ModelAdmin):
 
 class MusicAdmin(admin.ModelAdmin):
     list_display = ["title", "composers_html",]
-    list_filter = ["composers", "arrangers",]
-    search_fields = ["title", "composers", "arrangers",]
+    list_filter = [
+        ("composers", admin.RelatedOnlyFieldListFilter),
+        ("arrangers", admin.RelatedOnlyFieldListFilter),
+    ]
+    search_fields = [
+        "title",
+        "composers__surname",
+        "composers__givenname",
+        "arrangers__surname",
+        "arrangers__givenname",
+    ]
 
     def composers_html(self, obj):
         composers = "<br>".join([f"{author}" for author in obj.composers.all()])
