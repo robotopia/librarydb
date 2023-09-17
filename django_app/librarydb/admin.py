@@ -21,7 +21,8 @@ class BookAdmin(admin.ModelAdmin):
         return format_html(authors)
 
 admin.site.register(models.Author)
+admin.site.register(models.Book, BookAdmin)
+admin.site.register(models.Music)
 admin.site.register(models.Room)
 admin.site.register(models.Storage)
-admin.site.register(models.Book, BookAdmin)
 admin.site.register(models.Version)

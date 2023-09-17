@@ -59,3 +59,12 @@ class Book(models.Model):
     class Meta:
         ordering = ("title", "storage", "shelf",)
 
+class Music(models.Model):
+    title = models.CharField(max_length=200)
+    book_or_folder = models.ForeignKey(Book, on_delete=models.CASCADE)
+    composers = models.ManyToManyField(Author, blank=True, related_name="composed_music")
+    arrangers = models.ManyToManyField(Author, blank=True, related_name="arranged_music")
+
+    class Meta:
+        verbose_name_plural = "Music"
+        ordering = ("title",)
