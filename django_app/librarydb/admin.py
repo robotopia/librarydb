@@ -5,7 +5,7 @@ from django.utils.html import format_html
 from . import models
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ["title", "authors_html", "loaned_to", "loan_date",]
+    list_display = ["title", "authors_html", "storage", "shelf", "loaned_to", "loan_date",]
     list_filter = [
         ("storage", admin.RelatedOnlyFieldListFilter),
         "shelf",
