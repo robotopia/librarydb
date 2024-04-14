@@ -1,3 +1,5 @@
 # Django app
 librarydb.sqlite3
 __pycache__
+venv
+.env

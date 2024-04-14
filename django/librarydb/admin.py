@@ -4,6 +4,11 @@ from django.utils.html import format_html
 # Register your models here.
 from . import models
 
+class MusicInline(admin.TabularInline):
+    model = models.Music
+    extra = 1
+    filter_horizontal = ["composers", "arrangers"]
+
 @admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ["title", "authors_html", "storage", "shelf", "loaned_to", "loan_date",]
@@ -16,7 +21,8 @@ class BookAdmin(admin.ModelAdmin):
         "authors__surname",
         "authors__givenname",
     ]
-    filter_horizontal = ["authors"]
+    filter_horizontal = ["authors", "languages"]
+    inlines = [MusicInline]
 
     def authors_html(self, obj):
         authors = "<br>".join([f"{author}" for author in obj.authors.all()])
@@ -28,6 +34,7 @@ class MusicAdmin(admin.ModelAdmin):
     list_filter = [
         ("composers", admin.RelatedOnlyFieldListFilter),
         ("arrangers", admin.RelatedOnlyFieldListFilter),
+        ("book_or_folder", admin.RelatedOnlyFieldListFilter),
     ]
     search_fields = [
         "title",
@@ -36,6 +43,8 @@ class MusicAdmin(admin.ModelAdmin):
         "arrangers__surname",
         "arrangers__givenname",
     ]
+    filter_horizontal = ["composers", "arrangers"]
+    autocomplete_fields = ["book_or_folder"]
 
     def composers_html(self, obj):
         composers = "<br>".join([f"{author}" for author in obj.composers.all()])
@@ -43,8 +52,12 @@ class MusicAdmin(admin.ModelAdmin):
 
 @admin.register(models.Author)
 class AuthorAdmin(admin.ModelAdmin):
-    fields = ["surname", "givenname", "books"]
     search_fields = ["surname", "givenname"]
+    filter_horizontal = ["books", "composed_music"]
+    #fields = ["givenname", "surname", "books"]
+
+@admin.register(models.Language)
+class LanguageAdmin(admin.ModelAdmin):
     filter_horizontal = ["books"]
 
 admin.site.register(models.Room)
