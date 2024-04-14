@@ -4,6 +4,7 @@ from django.utils.html import format_html
 # Register your models here.
 from . import models
 
+@admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ["title", "authors_html", "storage", "shelf", "loaned_to", "loan_date",]
     list_filter = [
@@ -15,11 +16,13 @@ class BookAdmin(admin.ModelAdmin):
         "authors__surname",
         "authors__givenname",
     ]
+    filter_horizontal = ["authors"]
 
     def authors_html(self, obj):
         authors = "<br>".join([f"{author}" for author in obj.authors.all()])
         return format_html(authors)
 
+@admin.register(models.Music)
 class MusicAdmin(admin.ModelAdmin):
     list_display = ["title", "composers_html",]
     list_filter = [
@@ -38,9 +41,12 @@ class MusicAdmin(admin.ModelAdmin):
         composers = "<br>".join([f"{author}" for author in obj.composers.all()])
         return format_html(composers)
 
-admin.site.register(models.Author)
-admin.site.register(models.Book, BookAdmin)
-admin.site.register(models.Music, MusicAdmin)
+@admin.register(models.Author)
+class AuthorAdmin(admin.ModelAdmin):
+    fields = ["surname", "givenname", "books"]
+    search_fields = ["surname", "givenname"]
+    filter_horizontal = ["books"]
+
 admin.site.register(models.Room)
 admin.site.register(models.Storage)
 admin.site.register(models.Version)

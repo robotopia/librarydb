@@ -12,6 +12,7 @@ class Version(models.Model):
 class Author(models.Model):
     surname = models.CharField(max_length=200)
     givenname = models.CharField(verbose_name="Given names", max_length=200, null=True, blank=True)
+    books = models.ManyToManyField('Book', blank=True, through='BookAuthor', through_fields=("author", "book"))
 
     def __str__(self):
         if self.givenname is not None:
@@ -49,7 +50,7 @@ class Book(models.Model):
     isbn = models.CharField("ISBN", max_length=64, null=True, blank=True)
     storage = models.ForeignKey(Storage, null=True, blank=True, on_delete=models.SET_NULL)
     shelf = models.IntegerField(null=True, blank=True)
-    authors = models.ManyToManyField(Author, blank=True)
+    authors = models.ManyToManyField(Author, blank=True, through="BookAuthor", through_fields=("book", "author"))
     loaned_to = models.CharField(max_length=200, blank=True, null=True)
     loan_date = models.DateField(blank=True, null=True)
 
@@ -71,3 +72,12 @@ class Music(models.Model):
     class Meta:
         verbose_name_plural = "Music"
         ordering = ("title",)
+
+class BookAuthor(models.Model):
+    book = models.ForeignKey("Book", models.CASCADE)
+    author = models.ForeignKey("Author", models.CASCADE)
+
+    class Meta:
+        db_table = 'librarydb_book_authors'
+        auto_created = True # https://stackoverflow.com/questions/10110606/django-admin-many-to-many-intermediary-models-using-through-and-filter-horizont/10203192?noredirect=1#comment18228487_10203192
+
