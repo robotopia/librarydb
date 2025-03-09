@@ -12,10 +12,12 @@ class MusicInline(admin.TabularInline):
 @admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ["title", "authors_html", "storage", "shelf", "loaned_to", "loan_date",]
+    list_editable = ["shelf",]
     list_filter = [
         ("storage", admin.RelatedOnlyFieldListFilter),
         "shelf",
         "owner",
+        "author",
     ]
     search_fields = [
         "title",
