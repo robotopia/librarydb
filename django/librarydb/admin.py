@@ -15,6 +15,7 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = [
         ("storage", admin.RelatedOnlyFieldListFilter),
         "shelf",
+        "owner",
     ]
     search_fields = [
         "title",
